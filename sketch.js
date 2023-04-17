@@ -62,8 +62,11 @@ let c;
 let mFont;
 let textInput;
 let dotSize;
-let colorArray = ['rgba(0, 30, 20, 1)','rgba(29, 29, 48, 1)','rgba(0, 43, 48, 1)']
+let colorArray = [
+  'rgba(255, 0, 0, 1)',
+  'rgba(0, 0, 255, 1)'];
 let colorP;
+let colorI = 0;
 
 function preload() {
   mFont = loadFont('assets/AcidGrotesk-Bold.otf');
@@ -81,7 +84,7 @@ function setup() {
   textFont(mFont);
   dotSize = height/10;
   noStroke();
-  colorP = random(colorArray);
+  colorP = colorArray[colorI];
   fill(255);
 }
 
@@ -94,7 +97,13 @@ function draw() {
 }
 
 function pickText() {
-  colorP = random(colorArray);
+  if (colorI == 0) {
+    colorI = 1;
+  }
+  else {
+    colorI = 0;
+  }
+  colorP = colorArray[colorI];
   pickedText = random(textArray);
   dotSize = height/10;
 }
